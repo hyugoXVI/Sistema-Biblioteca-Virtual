@@ -1,7 +1,16 @@
 package com.example.Sistema_Biblioteca_Digital.model;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
+@MappedSuperclass
 public class MediaItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String authorOrPublisher;
     private  String title;
     private  int year;
@@ -25,5 +34,9 @@ public class MediaItem {
 
     public int getYear() {
         return year;
+    }
+
+    public long getId() {
+        return id;
     }
 }

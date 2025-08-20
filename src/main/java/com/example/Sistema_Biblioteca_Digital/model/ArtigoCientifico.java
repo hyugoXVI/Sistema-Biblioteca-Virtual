@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="artigos")
 public class ArtigoCientifico extends MediaItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+
 
     private String conferenciaPublicacao;
 
@@ -18,9 +16,7 @@ public class ArtigoCientifico extends MediaItem {
         this.conferenciaPublicacao = conferenciaPublicacao;
     }
 
-    public long getId() {
-        return id;
-    }
+
 
     public String getConferenciaPublicacao() {
         return conferenciaPublicacao;
