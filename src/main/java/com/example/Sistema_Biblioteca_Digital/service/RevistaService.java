@@ -27,7 +27,11 @@ public class RevistaService {
         return revistaRepository.save(revista);
     }
 
-    public void deletarRevistaPorId(Long id){
-        revistaRepository.deleteById(id);
+    public boolean deletarRevistaPorId(Long id){
+        if (revistaRepository.existsById(id)){
+            revistaRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

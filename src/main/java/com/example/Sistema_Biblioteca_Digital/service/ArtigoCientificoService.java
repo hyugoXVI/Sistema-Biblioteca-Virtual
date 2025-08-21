@@ -27,7 +27,11 @@ public class ArtigoCientificoService {
         return artigoCientificoRepository.save(artigo);
     }
 
-    public void deletarArtigoPorId(Long id){
-        artigoCientificoRepository.deleteById(id);
+    public boolean deletarArtigoPorId(Long id){
+        if (artigoCientificoRepository.existsById(id)){
+            artigoCientificoRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
