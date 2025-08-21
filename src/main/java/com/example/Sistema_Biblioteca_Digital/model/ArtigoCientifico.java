@@ -11,8 +11,8 @@ public class ArtigoCientifico extends MediaItem {
 
     public ArtigoCientifico(){}
 
-    public ArtigoCientifico(String authorOrPublisher, String title, int year, String conferenciaPublicacao) {
-        super(authorOrPublisher, title, year);
+    public ArtigoCientifico(String authorOrPublisher, String titulo, int ano, String conferenciaPublicacao) {
+        super(authorOrPublisher, titulo, ano);
         this.conferenciaPublicacao = conferenciaPublicacao;
     }
 

@@ -23,7 +23,7 @@ public class ArtigoCientificoController {
         return artigoCientificoService.listarArtigos();
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ArtigoCientifico> buscarArtigoPorId(@PathVariable long id){
         Optional<ArtigoCientifico> artigoCientificoOptional = artigoCientificoService.buscarArtigoPorId(id);
 
@@ -35,5 +35,13 @@ public class ArtigoCientificoController {
     public ResponseEntity<ArtigoCientifico> criarArtigo(@RequestBody ArtigoCientifico artigoCientifico){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(artigoCientificoService.adicionarArtigo(artigoCientifico));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ArtigoCientifico> deletarArtigoPorId(long id){
+        if (artigoCientificoService.deletarArtigoPorId(id)){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

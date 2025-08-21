@@ -11,8 +11,8 @@ public class Revista extends MediaItem{
 
     public Revista(){}
 
-    public Revista(String authorOrPublisher, String title, int year, int numeroEdicao) {
-        super(authorOrPublisher, title, year);
+    public Revista(String authorOrPublisher, String titulo, int ano, int numeroEdicao) {
+        super(authorOrPublisher, titulo, ano);
         this.numeroEdicao = numeroEdicao;
     }
 

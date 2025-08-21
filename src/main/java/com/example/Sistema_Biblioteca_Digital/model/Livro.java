@@ -11,8 +11,8 @@ public class Livro extends MediaItem {
 
     public Livro(){}
 
-    public Livro(String authorOrPublisher, String title, int year, int numeroPaginas) {
-        super(authorOrPublisher, title, year);
+    public Livro(String authorOrPublisher, String titulo, int ano, int numeroPaginas) {
+        super(authorOrPublisher, titulo, ano);
         this.numeroPaginas = numeroPaginas;
     }
 

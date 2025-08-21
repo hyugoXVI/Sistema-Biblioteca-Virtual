@@ -37,7 +37,7 @@ public class RevistaController {
                 .body(revistaService.adicionarRevista(revista));
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarRevistaPorId(@PathVariable Long id){
         if (revistaService.deletarRevistaPorId(id)){
             return ResponseEntity.noContent().build();

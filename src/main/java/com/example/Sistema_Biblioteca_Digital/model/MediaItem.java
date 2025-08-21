@@ -12,28 +12,28 @@ public class MediaItem {
     private long id;
 
     private String authorOrPublisher;
-    private  String title;
-    private  int year;
+    private  String titulo;
+    private  int ano;
 
 
     public MediaItem(){}
 
-    public MediaItem(String authorOrPublisher, String title, int year) {
+    public MediaItem(String authorOrPublisher, String titulo, int ano) {
         this.authorOrPublisher = authorOrPublisher;
-        this.title = title;
-        this.year = year;
+        this.titulo = titulo;
+        this.ano = ano;
     }
 
     public String getAuthorOrPublisher() {
         return authorOrPublisher;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public int getYear() {
-        return year;
+    public int getAno() {
+        return ano;
     }
 
     public long getId() {
