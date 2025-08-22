@@ -27,6 +27,22 @@ public class ArtigoCientificoService {
         return artigoCientificoRepository.save(artigo);
     }
 
+    public Optional<ArtigoCientifico> atualizarArtigoPorId(long id, ArtigoCientifico artigoCientificoAtualizado){
+        Optional<ArtigoCientifico> artigoOptional = artigoCientificoRepository.findById(id);
+
+        if (artigoOptional.isPresent()){
+            ArtigoCientifico artigoCientificoBuscado = artigoOptional.get();
+
+            artigoCientificoBuscado.setAuthorOrPublisher(artigoCientificoAtualizado.getAuthorOrPublisher());
+            artigoCientificoBuscado.setTitulo(artigoCientificoAtualizado.getTitulo());
+            artigoCientificoBuscado.setAno(artigoCientificoAtualizado.getAno());
+            artigoCientificoBuscado.setConferenciaPublicacao(artigoCientificoAtualizado.getConferenciaPublicacao());
+
+            return Optional.of(artigoCientificoRepository.save(artigoCientificoBuscado));
+        }
+        return Optional.empty();
+    }
+
     public boolean deletarArtigoPorId(Long id){
         if (artigoCientificoRepository.existsById(id)){
             artigoCientificoRepository.deleteById(id);

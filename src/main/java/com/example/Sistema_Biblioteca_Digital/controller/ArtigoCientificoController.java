@@ -1,6 +1,7 @@
 package com.example.Sistema_Biblioteca_Digital.controller;
 
 import com.example.Sistema_Biblioteca_Digital.model.ArtigoCientifico;
+import com.example.Sistema_Biblioteca_Digital.repository.ArtigoCientificoRepository;
 import com.example.Sistema_Biblioteca_Digital.service.ArtigoCientificoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,11 @@ import java.util.Optional;
 @RequestMapping("/api/artigos")
 public class ArtigoCientificoController {
     private final ArtigoCientificoService artigoCientificoService;
+    private final ArtigoCientificoRepository artigoCientificoRepository;
 
-    public ArtigoCientificoController(ArtigoCientificoService artigoCientificoService) {
+    public ArtigoCientificoController(ArtigoCientificoService artigoCientificoService, ArtigoCientificoRepository artigoCientificoRepository) {
         this.artigoCientificoService = artigoCientificoService;
+        this.artigoCientificoRepository = artigoCientificoRepository;
     }
 
     @GetMapping
@@ -35,6 +38,16 @@ public class ArtigoCientificoController {
     public ResponseEntity<ArtigoCientifico> criarArtigo(@RequestBody ArtigoCientifico artigoCientifico){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(artigoCientificoService.adicionarArtigo(artigoCientifico));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ArtigoCientifico> atualizarArtigoPorId(@PathVariable long id,
+                                                                 @RequestBody ArtigoCientifico artigoCientificoAtualizado){
+        Optional<ArtigoCientifico> artigoCientificoOptional = artigoCientificoService
+                .atualizarArtigoPorId(id, artigoCientificoAtualizado);
+
+        return  artigoCientificoOptional.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

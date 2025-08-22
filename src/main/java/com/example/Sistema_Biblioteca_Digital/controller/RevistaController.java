@@ -37,6 +37,14 @@ public class RevistaController {
                 .body(revistaService.adicionarRevista(revista));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Revista> atualizarRevistaPorId(@PathVariable long id, @RequestBody Revista revistaAtualizada){
+        Optional<Revista> revistaOptional = revistaService.atualizarRevistaPorId(id, revistaAtualizada);
+
+        return revistaOptional.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarRevistaPorId(@PathVariable Long id){
         if (revistaService.deletarRevistaPorId(id)){

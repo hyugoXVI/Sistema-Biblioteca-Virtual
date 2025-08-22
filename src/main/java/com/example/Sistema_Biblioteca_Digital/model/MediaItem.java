@@ -39,4 +39,16 @@ public class MediaItem {
     public long getId() {
         return id;
     }
+
+    public void setAuthorOrPublisher(String authorOrPublisher) {
+        this.authorOrPublisher = authorOrPublisher;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 @Service
 public class RevistaService {
@@ -26,6 +27,23 @@ public class RevistaService {
     public Revista adicionarRevista(Revista revista){
         return revistaRepository.save(revista);
     }
+
+    public Optional<Revista> atualizarRevistaPorId(long id, Revista revistaAtualizada){
+        Optional<Revista> revistaOptional = revistaRepository.findById(id);
+
+        if (revistaOptional.isPresent()){
+            Revista revistaBuscada = revistaOptional.get();
+
+            revistaBuscada.setAuthorOrPublisher(revistaAtualizada.getAuthorOrPublisher());
+            revistaBuscada.setTitulo(revistaAtualizada.getTitulo());
+            revistaBuscada.setAno(revistaAtualizada.getAno());
+            revistaBuscada.setNumeroEdicao(revistaAtualizada.getNumeroEdicao());
+
+            return Optional.of(revistaRepository.save(revistaBuscada));
+        }
+        return Optional.empty();
+    }
+
 
     public boolean deletarRevistaPorId(Long id){
         if (revistaRepository.existsById(id)){

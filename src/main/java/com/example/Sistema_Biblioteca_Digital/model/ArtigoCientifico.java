@@ -16,7 +16,9 @@ public class ArtigoCientifico extends MediaItem {
         this.conferenciaPublicacao = conferenciaPublicacao;
     }
 
-
+    public void setConferenciaPublicacao(String conferenciaPublicacao) {
+        this.conferenciaPublicacao = conferenciaPublicacao;
+    }
 
     public String getConferenciaPublicacao() {
         return conferenciaPublicacao;

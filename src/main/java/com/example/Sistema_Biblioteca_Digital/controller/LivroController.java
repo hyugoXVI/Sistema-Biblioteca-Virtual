@@ -37,6 +37,17 @@ public class LivroController {
                 .body(livroService.adicionarLivro(livro));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Livro> atualizarLivro(@PathVariable long id, @RequestBody Livro livroAtualizado){
+        Optional<Livro> livroOptional = livroService.atualizarLivroPorId(id, livroAtualizado);
+
+        return livroOptional.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+
+    }
+
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarLivroPorId(@PathVariable Long id){
         if (livroService.deletarLivro(id)){

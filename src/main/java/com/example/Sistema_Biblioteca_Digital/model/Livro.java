@@ -21,4 +21,8 @@ public class Livro extends MediaItem {
     public int getNumeroPaginas() {
         return numeroPaginas;
     }
+
+    public void setNumeroPaginas(int numeroPaginas) {
+        this.numeroPaginas = numeroPaginas;
+    }
 }

@@ -21,4 +21,8 @@ public class Revista extends MediaItem{
     public int getNumeroEdicao() {
         return numeroEdicao;
     }
+
+    public void setNumeroEdicao(int numeroEdicao) {
+        this.numeroEdicao = numeroEdicao;
+    }
 }
