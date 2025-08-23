@@ -16,7 +16,7 @@ public class ArtigoCientificoService {
     }
 
     public List<ArtigoCientifico> listarArtigos(){
-        return artigoCientificoRepository.findAll();
+        return artigoCientificoRepository.findAllByOrderByIdAsc();
     }
 
     public Optional<ArtigoCientifico> buscarArtigoPorId(Long id){

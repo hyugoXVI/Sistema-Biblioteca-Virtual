@@ -16,7 +16,7 @@ public class LivroService {
     }
 
     public List<Livro> listarLivros() {
-        return livroRepository.findAll();
+        return livroRepository.findAllByOrderByIdAsc();
     }
 
     public Optional<Livro> buscarLivroId(Long id) {
@@ -29,10 +29,10 @@ public class LivroService {
         return livroRepository.save(livro);
     }
 
-    public Optional<Livro> atualizarLivroPorId(long id, Livro livroAtualizado ){
+    public Optional<Livro> atualizarLivroPorId(long id, Livro livroAtualizado) {
         Optional<Livro> livroOptional = livroRepository.findById(id);
 
-        if (livroOptional.isPresent()){
+        if (livroOptional.isPresent()) {
             Livro livroBuscado = livroOptional.get();
 
             livroBuscado.setAuthorOrPublisher(livroAtualizado.getAuthorOrPublisher());

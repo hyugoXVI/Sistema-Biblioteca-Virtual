@@ -16,22 +16,22 @@ public class RevistaService {
         this.revistaRepository = revistaRepository;
     }
 
-    public List<Revista> listarRevistas(){
-        return  revistaRepository.findAll();
+    public List<Revista> listarRevistas() {
+        return revistaRepository.findAllByOrderByIdAsc();
     }
 
-    public Optional<Revista> buscarPorId(Long id){
+    public Optional<Revista> buscarPorId(Long id) {
         return revistaRepository.findById(id);
     }
 
-    public Revista adicionarRevista(Revista revista){
+    public Revista adicionarRevista(Revista revista) {
         return revistaRepository.save(revista);
     }
 
-    public Optional<Revista> atualizarRevistaPorId(long id, Revista revistaAtualizada){
+    public Optional<Revista> atualizarRevistaPorId(long id, Revista revistaAtualizada) {
         Optional<Revista> revistaOptional = revistaRepository.findById(id);
 
-        if (revistaOptional.isPresent()){
+        if (revistaOptional.isPresent()) {
             Revista revistaBuscada = revistaOptional.get();
 
             revistaBuscada.setAuthorOrPublisher(revistaAtualizada.getAuthorOrPublisher());
@@ -45,8 +45,8 @@ public class RevistaService {
     }
 
 
-    public boolean deletarRevistaPorId(Long id){
-        if (revistaRepository.existsById(id)){
+    public boolean deletarRevistaPorId(Long id) {
+        if (revistaRepository.existsById(id)) {
             revistaRepository.deleteById(id);
             return true;
         }
