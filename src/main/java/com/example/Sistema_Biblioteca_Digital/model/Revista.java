@@ -3,6 +3,8 @@ package com.example.Sistema_Biblioteca_Digital.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 
+import java.time.Year;
+
 @Entity
 @Table(name="revistas")
 public class Revista extends MediaItem{
@@ -12,7 +14,7 @@ public class Revista extends MediaItem{
 
     public Revista(){}
 
-    public Revista(String authorOrPublisher, String titulo, int ano, int numeroEdicao) {
+    public Revista(String authorOrPublisher, String titulo, Year ano, int numeroEdicao) {
         super(authorOrPublisher, titulo, ano);
         this.numeroEdicao = numeroEdicao;
     }

@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDateTime;
+import java.time.Year;
 
 @MappedSuperclass
 public class MediaItem {
@@ -25,13 +26,13 @@ public class MediaItem {
     private  String titulo;
 
     @NotNull(message = "O ano não pode ser nulo.")
-//    @PastOrPresent(message = "O ano não pode ser maior que o ano atual.")
-    private  int ano;
+    @PastOrPresent(message = "O ano não pode ser maior que o ano atual.")
+    private Year ano;
 
 
     public MediaItem(){}
 
-    public MediaItem(String authorOrPublisher, String titulo, int ano) {
+    public MediaItem(String authorOrPublisher, String titulo, Year ano) {
         this.authorOrPublisher = authorOrPublisher;
         this.titulo = titulo;
         this.ano = ano;
@@ -45,7 +46,7 @@ public class MediaItem {
         return titulo;
     }
 
-    public int getAno() {
+    public Year getAno() {
         return ano;
     }
 
@@ -61,7 +62,7 @@ public class MediaItem {
         this.titulo = titulo;
     }
 
-    public void setAno(int ano) {
+    public void setAno(Year ano) {
         this.ano = ano;
     }
 }

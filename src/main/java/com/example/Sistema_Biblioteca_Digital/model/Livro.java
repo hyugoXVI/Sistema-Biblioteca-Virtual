@@ -3,6 +3,8 @@ package com.example.Sistema_Biblioteca_Digital.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 
+import java.time.Year;
+
 @Entity
 @Table(name="livros")
 public class Livro extends MediaItem {
@@ -12,7 +14,7 @@ public class Livro extends MediaItem {
 
     public Livro(){}
 
-    public Livro(String authorOrPublisher, String titulo, int ano, int numeroPaginas) {
+    public Livro(String authorOrPublisher, String titulo, Year ano, int numeroPaginas) {
         super(authorOrPublisher, titulo, ano);
         this.numeroPaginas = numeroPaginas;
     }
