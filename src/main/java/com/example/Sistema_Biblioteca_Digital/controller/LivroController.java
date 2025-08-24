@@ -2,6 +2,7 @@ package com.example.Sistema_Biblioteca_Digital.controller;
 
 import com.example.Sistema_Biblioteca_Digital.model.Livro;
 import com.example.Sistema_Biblioteca_Digital.service.LivroService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,13 @@ public class LivroController {
     }
 
     @PostMapping
-    public ResponseEntity<Livro> adicionarLivro(@RequestBody Livro livro){
+    public ResponseEntity<Livro> adicionarLivro(@Valid @RequestBody Livro livro){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(livroService.adicionarLivro(livro));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Livro> atualizarLivro(@PathVariable long id, @RequestBody Livro livroAtualizado){
+    public ResponseEntity<Livro> atualizarLivro(@PathVariable long id, @Valid @RequestBody Livro livroAtualizado){
         Optional<Livro> livroOptional = livroService.atualizarLivroPorId(id, livroAtualizado);
 
         return livroOptional.map(ResponseEntity::ok)

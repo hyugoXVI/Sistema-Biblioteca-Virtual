@@ -3,6 +3,7 @@ package com.example.Sistema_Biblioteca_Digital.controller;
 import com.example.Sistema_Biblioteca_Digital.model.ArtigoCientifico;
 import com.example.Sistema_Biblioteca_Digital.repository.ArtigoCientificoRepository;
 import com.example.Sistema_Biblioteca_Digital.service.ArtigoCientificoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +15,10 @@ import java.util.Optional;
 @RequestMapping("/api/artigos")
 public class ArtigoCientificoController {
     private final ArtigoCientificoService artigoCientificoService;
-    private final ArtigoCientificoRepository artigoCientificoRepository;
 
-    public ArtigoCientificoController(ArtigoCientificoService artigoCientificoService, ArtigoCientificoRepository artigoCientificoRepository) {
+
+    public ArtigoCientificoController(ArtigoCientificoService artigoCientificoService) {
         this.artigoCientificoService = artigoCientificoService;
-        this.artigoCientificoRepository = artigoCientificoRepository;
     }
 
     @GetMapping
@@ -35,14 +35,15 @@ public class ArtigoCientificoController {
     }
 
     @PostMapping
-    public ResponseEntity<ArtigoCientifico> criarArtigo(@RequestBody ArtigoCientifico artigoCientifico){
+    public ResponseEntity<ArtigoCientifico> criarArtigo(@Valid @RequestBody ArtigoCientifico artigoCientifico){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(artigoCientificoService.adicionarArtigo(artigoCientifico));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ArtigoCientifico> atualizarArtigoPorId(@PathVariable long id,
-                                                                 @RequestBody ArtigoCientifico artigoCientificoAtualizado){
+                                                                 @Valid  @RequestBody ArtigoCientifico
+                                                                         artigoCientificoAtualizado){
         Optional<ArtigoCientifico> artigoCientificoOptional = artigoCientificoService
                 .atualizarArtigoPorId(id, artigoCientificoAtualizado);
 

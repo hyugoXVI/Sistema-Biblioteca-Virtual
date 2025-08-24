@@ -4,6 +4,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class MediaItem {
@@ -11,8 +16,16 @@ public class MediaItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
+
+    @NotBlank(message = "Autor/editor não pode ficar em branco.")
     private String authorOrPublisher;
+
+    @NotBlank(message = "Título não pode ficar em branco.")
     private  String titulo;
+
+    @NotNull(message = "O ano não pode ser nulo.")
+//    @PastOrPresent(message = "O ano não pode ser maior que o ano atual.")
     private  int ano;
 
 

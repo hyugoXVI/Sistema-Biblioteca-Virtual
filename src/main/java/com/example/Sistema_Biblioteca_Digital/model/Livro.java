@@ -1,12 +1,13 @@
 package com.example.Sistema_Biblioteca_Digital.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name="livros")
 public class Livro extends MediaItem {
 
-
+    @Positive(message = "O número de páginas tende a ser postivo.")
     private int numeroPaginas;
 
     public Livro(){}

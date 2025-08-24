@@ -2,6 +2,7 @@ package com.example.Sistema_Biblioteca_Digital.controller;
 
 import com.example.Sistema_Biblioteca_Digital.model.Revista;
 import com.example.Sistema_Biblioteca_Digital.service.RevistaService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,13 @@ public class RevistaController {
     }
 
     @PostMapping
-    public ResponseEntity<Revista> adicionarRevista(@RequestBody Revista revista){
+    public ResponseEntity<Revista> adicionarRevista(@Valid @RequestBody Revista revista){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(revistaService.adicionarRevista(revista));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Revista> atualizarRevistaPorId(@PathVariable long id, @RequestBody Revista revistaAtualizada){
+    public ResponseEntity<Revista> atualizarRevistaPorId(@PathVariable long id, @Valid @RequestBody Revista revistaAtualizada){
         Optional<Revista> revistaOptional = revistaService.atualizarRevistaPorId(id, revistaAtualizada);
 
         return revistaOptional.map(ResponseEntity::ok)
